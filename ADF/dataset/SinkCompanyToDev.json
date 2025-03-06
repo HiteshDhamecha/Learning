@@ -1,0 +1,183 @@
+{
+	"name": "SinkCompanyToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MainAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MainPhone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WebSite",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingAddressLine1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingAddressLine2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingCity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingState",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingZipCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BillingCountry",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JoinDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "TerminationDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PaidThroughDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CompanyType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Established",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Revenue",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "NumberEmployees",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TeamMemberCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LeadershipTeamMemberCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DateCreated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "AlignStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CoachID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsCoachingCompany",
+				"type": "bit"
+			},
+			{
+				"name": "AffiliateFromPersonID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ExternalProductName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ExternalPricePoint",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ReasonForUsingAlign",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PreferredManagementFramework",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AlignBrand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ScalingUpExperience",
+				"type": "varchar"
+			},
+			{
+				"name": "ExistingToolsAndNotes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EnableAIFeatures",
+				"type": "bit"
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Company"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,21 @@
+{
+	"name": "alignDevSQL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "DEVMAIN01.ALIGNTODAY.COM\\DEV",
+			"database": "Align_AI_Coach",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "mj_integration",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3YTYxZTQyMC02ZDdjLTQ0ZWEtYjM5ZC1hMzc0MWJmYTVlZGYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "alignDevIR-DevMain01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

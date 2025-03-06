@@ -1,0 +1,61 @@
+{
+	"name": "SourceAlignTeamToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ShortName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Purpose",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Visibility",
+				"type": "varchar"
+			},
+			{
+				"name": "OwnerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HasOnePagePlan",
+				"type": "bit"
+			},
+			{
+				"name": "HasCriticalNumberSet",
+				"type": "bit"
+			},
+			{
+				"name": "CriticalNumberSetVisibility",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vwAlign_AI_Coach_AlignTeams__ADF"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

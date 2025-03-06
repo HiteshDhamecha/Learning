@@ -1,0 +1,302 @@
+{
+	"name": "AlignSeriesExecutionPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Person",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelinePersonToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Company",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Person",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineCompanyToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute RockPeriod",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Company",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineRockPeriodToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute CompanyMetric",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute RockPeriod",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineCompanyMetricToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Rock",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute CompanyMetric",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineRockToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute AlignTeam",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Rock",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineAlignTeamToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute OnePagePlan",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute DailyAlignKeyCompanyMetric",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineOnePagePlanToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute DailyAlignKeyCompanyMetric",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute AlignTeam",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineDailyAlignKeyCompanyMetricToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute OnePagePlanCoreValue",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute OnePagePlan",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineOPPCoreValue",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute OnePagePlanSWOTStrength",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute OnePagePlanCoreValue",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineOPPSWOTStrengthToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute OnePagePlanSWOTWeakness",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute OnePagePlanSWOTStrength",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineOPPSWOTWeaknessToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute OnePagePlanSWOTOpportunity",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute OnePagePlanSWOTWeakness",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineOPPSWOTOpportunityToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute OnePagePlanSWOTThreat",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute OnePagePlanSWOTOpportunity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipelineOPPSWOTThreatToDev",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-02-14T15:47:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

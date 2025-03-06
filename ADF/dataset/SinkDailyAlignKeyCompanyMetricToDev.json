@@ -1,0 +1,599 @@
+{
+	"name": "SinkDailyAlignKeyCompanyMetricToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "CompanyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RecordedOn",
+				"type": "date"
+			},
+			{
+				"name": "AlignStatus",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CoachID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotalUserCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ChargeableUserCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ChargeableUsersWithActivityInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ChargeableUsersAddedPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ChargeableUsersRemovedPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "OpenInvitationCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CurrentPeriodID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HasCurrentPeriod",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CurrentPeriodStartDate",
+				"type": "date"
+			},
+			{
+				"name": "CurrentPeriodEndDate",
+				"type": "date"
+			},
+			{
+				"name": "HasPastPeriod",
+				"type": "bit"
+			},
+			{
+				"name": "PastPeriodStartDate",
+				"type": "date"
+			},
+			{
+				"name": "PastPeriodEndDate",
+				"type": "date"
+			},
+			{
+				"name": "HasFuturePeriod",
+				"type": "bit"
+			},
+			{
+				"name": "FuturePeriodStartDate",
+				"type": "date"
+			},
+			{
+				"name": "FuturePeriodEndDate",
+				"type": "date"
+			},
+			{
+				"name": "DailyHuddleCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "WeeklyHuddleCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersInADailyHuddle",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersInAWeeklyHuddle",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DailyHuddle7DayParticipationRate",
+				"type": "decimal",
+				"precision": 6,
+				"scale": 2
+			},
+			{
+				"name": "WeeklyHuddle7DayParticipationRate",
+				"type": "decimal",
+				"precision": 6,
+				"scale": 2
+			},
+			{
+				"name": "eNPSLastSurveyDate",
+				"type": "date"
+			},
+			{
+				"name": "eNPSLastSurveyResponseDate",
+				"type": "date"
+			},
+			{
+				"name": "eNPSRecipientCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "eNPSResponseCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "eNPSScore",
+				"type": "decimal",
+				"precision": 6,
+				"scale": 2
+			},
+			{
+				"name": "CurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CurrentPeriodAveragePriorityCompletionPercent",
+				"type": "decimal",
+				"precision": 28,
+				"scale": 2
+			},
+			{
+				"name": "CurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CurrentPeriodAverageCompanyPriorityCompletionPercent",
+				"type": "decimal",
+				"precision": 28,
+				"scale": 2
+			},
+			{
+				"name": "UsersWithAPriorityInCurrentPeriod",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersWithAPriorityInCurrentPeriodUpdatedInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CurrentPeriodUserDrivenStatusPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SuperRedCurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "RedCurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "YellowCurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "GreenCurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SuperGreenCurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "NotSetCurrentPeriodPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SuperRedCurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "RedCurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "YellowCurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "GreenCurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "SuperGreenCurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "NotSetCurrentPeriodCompanyPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPCoreValueCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPHasBHAG",
+				"type": "bit"
+			},
+			{
+				"name": "CompanyOPSPHasCorePurpose",
+				"type": "bit"
+			},
+			{
+				"name": "CompanyOPSPHasBrandPromise",
+				"type": "bit"
+			},
+			{
+				"name": "CompanyOPSPHasBrandPromiseKPIs",
+				"type": "bit"
+			},
+			{
+				"name": "CompanyOPSP3to5YearsTargetCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSP3to5YearsKeyThrustCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSP3to5YearsHasProfitPerX",
+				"type": "bit"
+			},
+			{
+				"name": "CompanyOPSPAnnualGoalCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualInitiativeCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualInitiativeConnectedPriorityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualActionCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualStrengthCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualWeaknessCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualOpportunityCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualThreatCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPQuarterlyActionCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "RedCompanyOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "YellowCompanyOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "GreenCompanyOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TeamsWithAtLeast1CriticalNumber",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TeamOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "RedTeamOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "YellowTeamOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "GreenTeamOPSPCriticalNumberCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPHasTheme",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingPeopleEmployeeCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingPeopleCustomerCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingPeopleShareholderCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingProcessMakeBuyCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingProcessSellCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingProcessRecordkeepingCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPSupportingHasIdealClient",
+				"type": "bit"
+			},
+			{
+				"name": "UsersWithADailyTopPriorityInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DailyTopPrioritiesInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "DailyTopPrioritiesCompletedInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "OutstandingStuckCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersStuckInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersFromWhomHelpWasNeededPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "StucksResolvedInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "StucksCreatedInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersWithATask",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "OpenTaskCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "OverdueTaskCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompletedTasksInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TasksCreatedInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CoachingStaffCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersWhoHaveParticipatedInADailyHuddleInPast7Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersWhoHaveParticipatedInAWeeklyHuddleInPast30Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPAnnualInitiativesConnectedToAPriority",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "CompanyOPSPCriticalNumbersUpdatedInPast30Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "TeamOPSPCriticalNumbersUpdatedInPast30Days",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "FullUserCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "eNPSNonUserCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "PaidUserCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "eNPStoNonUsersFeature",
+				"type": "varchar"
+			},
+			{
+				"name": "NonCoachAdminUserCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersWithHuddles2SetAsDefaultView",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "KPIsComponentCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "KPICardsCurrentPeriodCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "KPICardsUserDashboardsCurrentPeriodCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "KPICardsCompanyDashboardCurrentPeriodCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "KPICardsHuddlesCurrentPeriodCount",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "UsersWithKPIsComponentAndKPICardOnUserDashboard",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "HuddlesWithKPIsComponentAndKPICard",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DailyAlignKeyCompanyMetric"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

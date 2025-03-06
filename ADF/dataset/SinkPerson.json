@@ -1,0 +1,207 @@
+{
+	"name": "SinkPerson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FirstLast",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Department",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Role",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PhoneAreaCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Birthday",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "HireDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateCreated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DateUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Biography",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TwitterAccount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LinkedInAccount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FacebookAccount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Hobbies",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiscNaturalD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscNaturalI",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscNaturalS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscNaturalC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscAdaptedD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscAdaptedI",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscAdaptedS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiscAdaptedC",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsCoach",
+				"type": "bit"
+			},
+			{
+				"name": "AffiliateID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ReceiveWeeklyPriorityEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveTaskCompletedEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveTaskUpdatedEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveStuckAlertEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveUnStuckAlertEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveWeeklyStatusReportEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveTaskDueTodayEmails",
+				"type": "bit"
+			},
+			{
+				"name": "ReceiveWeeklyExecutiveSummaryEmails",
+				"type": "bit"
+			},
+			{
+				"name": "PaypalEmail",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TimezoneOffsetInMinutes",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TaskProviderID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Person"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

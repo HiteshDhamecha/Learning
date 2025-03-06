@@ -1,0 +1,176 @@
+{
+	"name": "SinkRockToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ParentID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "CompanyRock",
+				"type": "bit"
+			},
+			{
+				"name": "OwnerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrimaryKPIID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PrimaryKPITarget",
+				"type": "decimal",
+				"precision": 28,
+				"scale": 4
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PeriodID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DateCreated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "SortOrder",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Increasing",
+				"type": "bit"
+			},
+			{
+				"name": "PrimaryKPIStart",
+				"type": "decimal",
+				"precision": 28,
+				"scale": 4
+			},
+			{
+				"name": "IsRollup",
+				"type": "bit"
+			},
+			{
+				"name": "SortPath",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsFourDVisionSummaryRock",
+				"type": "bit"
+			},
+			{
+				"name": "FourDVisionSummarySortOrder",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsSecure",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsTaskDriven",
+				"type": "bit"
+			},
+			{
+				"name": "CreatorID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "IsAlignedWithCompany",
+				"type": "bit"
+			},
+			{
+				"name": "IsAligned",
+				"type": "bit"
+			},
+			{
+				"name": "HasChildren",
+				"type": "bit"
+			},
+			{
+				"name": "Visibility",
+				"type": "varchar"
+			},
+			{
+				"name": "StatusType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RatedItemEntryID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValueSource",
+				"type": "varchar"
+			},
+			{
+				"name": "CompanyMetricID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DateUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Rock"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

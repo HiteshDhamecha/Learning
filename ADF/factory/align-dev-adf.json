@@ -1,0 +1,9 @@
+{
+	"name": "align-dev-adf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c6704f7d-9a11-4430-9cc4-9edf55bbd934",
+		"tenantId": "ff10ade7-5d03-40a9-be28-cb7ab99670b1"
+	}
+}
