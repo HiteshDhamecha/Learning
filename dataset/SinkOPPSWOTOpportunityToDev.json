@@ -1,0 +1,52 @@
+{
+	"name": "SinkOPPSWOTOpportunityToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OnePagePlanID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sequence",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Opportunity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SortOrder",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OnePagePlanSWOTOpportunity"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

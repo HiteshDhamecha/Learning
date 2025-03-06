@@ -1,0 +1,42 @@
+{
+	"name": "SourceOPPSWOTThreatToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OnePagePlanID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Sequence",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Threat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SortOrder",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "vwAlign_AI_Coach_OnePagePlanSWOTThreats__ADF"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

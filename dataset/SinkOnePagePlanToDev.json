@@ -1,0 +1,111 @@
+{
+	"name": "SinkOnePagePlanToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PeriodID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "Purpose",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Sandbox",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProfitX",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BHAG",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BrandPromises",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BrandPromisesKPI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ThemeDeadline",
+				"type": "date"
+			},
+			{
+				"name": "ThemeMeasurableTarget",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ThemeName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ThemeCelebration",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ThemeReward",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastUpdated",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Visibility",
+				"type": "varchar"
+			},
+			{
+				"name": "AlignTeamID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "LastUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "OnePagePlan"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

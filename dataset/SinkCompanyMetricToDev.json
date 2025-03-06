@@ -1,0 +1,133 @@
+{
+	"name": "SinkCompanyMetricToDev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "alignDevSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CompanyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Comments",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UniqueID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OwnerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Visibility",
+				"type": "varchar"
+			},
+			{
+				"name": "ModifiableBy",
+				"type": "varchar"
+			},
+			{
+				"name": "DataType",
+				"type": "varchar"
+			},
+			{
+				"name": "FormatString",
+				"type": "nvarchar"
+			},
+			{
+				"name": "KPITypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UpdateFrequency",
+				"type": "varchar"
+			},
+			{
+				"name": "Value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastUpdatedUTC",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "LastUpdatedByID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NextValueUpdateExpectedOn",
+				"type": "date"
+			},
+			{
+				"name": "Status",
+				"type": "varchar"
+			},
+			{
+				"name": "ValueSource",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FormulaExpression",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Cadence",
+				"type": "varchar"
+			},
+			{
+				"name": "ResetWeekDay",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ResetDayOfTheMonth",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ResetValue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "__mj_CreatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			},
+			{
+				"name": "__mj_UpdatedAt",
+				"type": "datetimeoffset",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CompanyMetric"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,6 @@
+{
+	"name": "alignDevIR-SP",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
