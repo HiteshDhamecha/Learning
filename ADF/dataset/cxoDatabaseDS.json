@@ -1,0 +1,17 @@
+{
+	"name": "cxoDatabaseDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cxoDatabaseLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Phl"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

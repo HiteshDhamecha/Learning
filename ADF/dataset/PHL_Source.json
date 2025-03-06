@@ -1,0 +1,27 @@
+{
+	"name": "PHL_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "etintlstorageLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "BOS 2023",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "BOS & PHL Data 2019, 2023, & 2024.xlsx",
+				"container": "phl"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "BOS 2019 Data",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

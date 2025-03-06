@@ -1,0 +1,7 @@
+{
+	"name": "personifyLocal-IR",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "to connect local or self hosted IR"
+	}
+}

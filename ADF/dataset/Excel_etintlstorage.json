@@ -1,0 +1,35 @@
+{
+	"name": "Excel_etintlstorage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "etintlstorageLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Store Person",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "DatabseBackup_4_FEB.xlsx",
+				"container": "project"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

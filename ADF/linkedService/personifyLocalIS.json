@@ -1,0 +1,22 @@
+{
+	"name": "personifyLocalIS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Self Hosted Linked Service.",
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "ET",
+			"database": "CASE770PROD_P360",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4MjFiZmMwZS1mZDM1LTQ0MWUtOGNkYS0zYjVlY2FlYWI1ZDYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "personifyLocal-IR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

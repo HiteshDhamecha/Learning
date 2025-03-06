@@ -1,0 +1,12 @@
+{
+	"name": "etintlstorageLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=etcidevetintlstorage;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDVFMUFBOUE0LTk1OTItNEYwNC05ODdGLTc3OTc5MjkzNjkyOV9jMTdiYTQzYi1iOGQ0LTQzMmEtYTMzNS00Y2MxNGZkN2ZlOGMiDQp9"
+		}
+	}
+}
