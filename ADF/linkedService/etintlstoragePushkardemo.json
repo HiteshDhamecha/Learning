@@ -1,0 +1,12 @@
+{
+	"name": "etintlstoragePushkardemo",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"containerUri": "https://etcidevetintlstorage.blob.core.windows.net/elevate",
+			"authenticationType": "Anonymous"
+		}
+	}
+}

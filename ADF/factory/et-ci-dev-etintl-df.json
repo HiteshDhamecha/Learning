@@ -1,0 +1,9 @@
+{
+	"name": "et-ci-dev-etintl-df",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c5177098-453b-43bd-9631-500b9f6bb04e",
+		"tenantId": "19e7c385-f88b-4426-9277-fb2314904077"
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"name": "SMintegrationRuntime1",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

@@ -1,0 +1,94 @@
+{
+	"name": "pagination",
+	"properties": {
+		"activities": [
+			{
+				"name": "JSON Pagination",
+				"description": "Implement pagination using Absolute URL option.",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": "Bearer CN3G2ZLSMhIbQgGAQAAAQSAAAAA4BwAAAAAAAAAAAAAAAAAgGJOJpgogsbHSGCjGzO0BMhQ7tCOHDaXLGUYy9LF8SzoHjh-rDDpTADEAR_8HAAAAAIAAAGB4ziyAAAAgAAAAFAAAOAAIANDD_xcBAAAggGf8h_8AALADAAAAAAAAAAAAAAIACLgCBAAAAAAAAAAAAAAAAAAAAEAAACBCFPFSDJRtNudmVXe9__5qKdfI0XubSgNuYTFSAFoAYAA"
+						},
+						"paginationRules": {
+							"QueryParameters.after": "RANGE:1:25000:100"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": true,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['properties']['domain']"
+								},
+								"sink": {
+									"name": "Domain",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['properties']['name']"
+								},
+								"sink": {
+									"name": "Name",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['results']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "hubSpotRestService",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "cxoDatabaseDS",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "VB RND"
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-03-07T04:47:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,16 +1,16 @@
 {
-	"name": "cxoDatabaseDS",
+	"name": "elevatePushkardbdestination",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "cxoDatabaseLS",
+			"referenceName": "sqldbLS",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "Company"
+			"schema": "elevate",
+			"table": "pushkardemo"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

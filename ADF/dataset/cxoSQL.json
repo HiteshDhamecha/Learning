@@ -1,8 +1,8 @@
 {
-	"name": "cxoDatabaseDS",
+	"name": "cxoSQL",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "cxoDatabaseLS",
+			"referenceName": "hboCompany_LS",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
