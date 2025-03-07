@@ -1,0 +1,1675 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "et-ci-dev-etintl-df"
+		},
+		"alignDevSQL_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'alignDevSQL'"
+		},
+		"cxoDatabaseLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'cxoDatabaseLS'"
+		},
+		"etintlstorageLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'etintlstorageLS'"
+		},
+		"hboCompany_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'hboCompany_LS'"
+		},
+		"personifyLocalIS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'personifyLocalIS'"
+		},
+		"sqldbLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'sqldbLS'"
+		},
+		"AviationStackAPILS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.aviationstack.com/v1/"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.hubapi.com/crm/v3/objects/companies?limit=100"
+		},
+		"alignDevSQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DEVMAIN01.ALIGNTODAY.COM\\DEV"
+		},
+		"alignDevSQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Align_AI_Coach"
+		},
+		"alignDevSQL_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "mj_integration"
+		},
+		"cxoDatabaseLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "et-ci-dev-cxo-sqlsrv.database.windows.net"
+		},
+		"cxoDatabaseLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "et-ci-dev-cxo-sqldb"
+		},
+		"cxoDatabaseLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "saadmin"
+		},
+		"hboCompany_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "et-ci-dev-cxo-sqlsrv.database.windows.net"
+		},
+		"hboCompany_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "et-ci-dev-cxo-sqldb"
+		},
+		"hboCompany_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "saadmin"
+		},
+		"hubspotAPI_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.hubapi.com/crm/v3/objects/companies?limit=100"
+		},
+		"personifyLocalIS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ET"
+		},
+		"personifyLocalIS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "CASE770PROD_P360"
+		},
+		"personifyLocalIS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"sqldbLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "et-ci-dev-etintl-dbsrv.database.windows.net"
+		},
+		"sqldbLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "et-ci-dev-etintl-sqldb"
+		},
+		"sqldbLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Aamir"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AviationStackAPILS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('AviationStackAPILS_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestService1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('RestService1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/alignDevSQL')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('alignDevSQL_properties_typeProperties_server')]",
+					"database": "[parameters('alignDevSQL_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": true,
+					"authenticationType": "SQL",
+					"userName": "[parameters('alignDevSQL_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('alignDevSQL_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/cxoDatabaseLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "To connect CXO Database",
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('cxoDatabaseLS_properties_typeProperties_server')]",
+					"database": "[parameters('cxoDatabaseLS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('cxoDatabaseLS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('cxoDatabaseLS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/etintlstorageLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('etintlstorageLS_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/etintlstoragePushkardemo')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"containerUri": "https://etcidevetintlstorage.blob.core.windows.net/elevate",
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hboCompany_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('hboCompany_LS_properties_typeProperties_server')]",
+					"database": "[parameters('hboCompany_LS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('hboCompany_LS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('hboCompany_LS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/hubspotAPI_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('hubspotAPI_LS_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/personifyLocalIS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Self Hosted Linked Service.",
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('personifyLocalIS_properties_typeProperties_server')]",
+					"database": "[parameters('personifyLocalIS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": true,
+					"authenticationType": "SQL",
+					"userName": "[parameters('personifyLocalIS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('personifyLocalIS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sqldbLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('sqldbLS_properties_typeProperties_server')]",
+					"database": "[parameters('sqldbLS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('sqldbLS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('sqldbLS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SMintegrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CompanyToDevSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MainAreaCode",
+						"type": "nchar"
+					},
+					{
+						"name": "MainPhone",
+						"type": "nchar"
+					},
+					{
+						"name": "WebSite",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingAddressLine1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingAddressLine2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCity",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingState",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingZipCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCountry",
+						"type": "nvarchar"
+					},
+					{
+						"name": "JoinDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TerminationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PaidThroughDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CompanyType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Established",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Revenue",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "NumberEmployees",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TeamMemberCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LeadershipTeamMemberCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DateCreated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DateUpdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AlignStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CoachID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IsCoachingCompany",
+						"type": "bit"
+					},
+					{
+						"name": "AffiliateFromPersonID",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "ExternalProductName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ExternalPricePoint",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ReasonForUsingAlign",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PreferredManagementFramework",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AlignBrand",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ScalingUpExperience",
+						"type": "varchar"
+					},
+					{
+						"name": "ExistingToolsAndNotes",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EnableAIFeatures",
+						"type": "bit"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "vwAlign_AI_Coach_Companies__ADF"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Excel_etintlstorage')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "etintlstorageLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Store Person",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "DatabseBackup_4_FEB.xlsx",
+						"container": "project"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/etintlstorageLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PHL_Source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "etintlstorageLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "BOS 2023",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "BOS & PHL Data 2019, 2023, & 2024.xlsx",
+						"container": "phl"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "BOS 2019 Data",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/etintlstorageLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkAlignTeamToDev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CompanyID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ShortName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DisplayName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Purpose",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Visibility",
+						"type": "varchar"
+					},
+					{
+						"name": "OwnerID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "HasOnePagePlan",
+						"type": "bit"
+					},
+					{
+						"name": "HasCriticalNumberSet",
+						"type": "bit"
+					},
+					{
+						"name": "CriticalNumberSetVisibility",
+						"type": "varchar"
+					},
+					{
+						"name": "__mj_CreatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					},
+					{
+						"name": "__mj_UpdatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "AlignTeam"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkCompanyMetricToDev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CompanyID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Comments",
+						"type": "nvarchar"
+					},
+					{
+						"name": "UniqueID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "OwnerID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Visibility",
+						"type": "varchar"
+					},
+					{
+						"name": "ModifiableBy",
+						"type": "varchar"
+					},
+					{
+						"name": "DataType",
+						"type": "varchar"
+					},
+					{
+						"name": "FormatString",
+						"type": "nvarchar"
+					},
+					{
+						"name": "KPITypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UpdateFrequency",
+						"type": "varchar"
+					},
+					{
+						"name": "Value",
+						"type": "nvarchar"
+					},
+					{
+						"name": "LastUpdatedUTC",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "LastUpdatedByID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NextValueUpdateExpectedOn",
+						"type": "date"
+					},
+					{
+						"name": "Status",
+						"type": "varchar"
+					},
+					{
+						"name": "ValueSource",
+						"type": "nvarchar"
+					},
+					{
+						"name": "FormulaExpression",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Cadence",
+						"type": "varchar"
+					},
+					{
+						"name": "ResetWeekDay",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ResetDayOfTheMonth",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ResetValue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "__mj_CreatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					},
+					{
+						"name": "__mj_UpdatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CompanyMetric"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkCompanyToDev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MainAreaCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "MainPhone",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WebSite",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingAddressLine1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingAddressLine2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCity",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingState",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingZipCode",
+						"type": "nvarchar"
+					},
+					{
+						"name": "BillingCountry",
+						"type": "nvarchar"
+					},
+					{
+						"name": "JoinDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "TerminationDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "PaidThroughDate",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "CompanyType",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Established",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Revenue",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "NumberEmployees",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TeamMemberCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "LeadershipTeamMemberCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "DateCreated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "DateUpdated",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AlignStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CoachID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IsCoachingCompany",
+						"type": "bit"
+					},
+					{
+						"name": "AffiliateFromPersonID",
+						"type": "uniqueidentifier"
+					},
+					{
+						"name": "ExternalProductName",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ExternalPricePoint",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ReasonForUsingAlign",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PreferredManagementFramework",
+						"type": "nvarchar"
+					},
+					{
+						"name": "AlignBrand",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ScalingUpExperience",
+						"type": "varchar"
+					},
+					{
+						"name": "ExistingToolsAndNotes",
+						"type": "nvarchar"
+					},
+					{
+						"name": "EnableAIFeatures",
+						"type": "bit"
+					},
+					{
+						"name": "__mj_CreatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					},
+					{
+						"name": "__mj_UpdatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Company"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkDailyAlignKeyCompanyMetricToDev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "CompanyID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RecordedOn",
+						"type": "date"
+					},
+					{
+						"name": "AlignStatus",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CoachID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "TotalUserCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ChargeableUserCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ChargeableUsersWithActivityInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ChargeableUsersAddedPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "ChargeableUsersRemovedPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "OpenInvitationCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CurrentPeriodID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "HasCurrentPeriod",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CurrentPeriodStartDate",
+						"type": "date"
+					},
+					{
+						"name": "CurrentPeriodEndDate",
+						"type": "date"
+					},
+					{
+						"name": "HasPastPeriod",
+						"type": "bit"
+					},
+					{
+						"name": "PastPeriodStartDate",
+						"type": "date"
+					},
+					{
+						"name": "PastPeriodEndDate",
+						"type": "date"
+					},
+					{
+						"name": "HasFuturePeriod",
+						"type": "bit"
+					},
+					{
+						"name": "FuturePeriodStartDate",
+						"type": "date"
+					},
+					{
+						"name": "FuturePeriodEndDate",
+						"type": "date"
+					},
+					{
+						"name": "DailyHuddleCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "WeeklyHuddleCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersInADailyHuddle",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersInAWeeklyHuddle",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DailyHuddle7DayParticipationRate",
+						"type": "decimal",
+						"precision": 6,
+						"scale": 2
+					},
+					{
+						"name": "WeeklyHuddle7DayParticipationRate",
+						"type": "decimal",
+						"precision": 6,
+						"scale": 2
+					},
+					{
+						"name": "eNPSLastSurveyDate",
+						"type": "date"
+					},
+					{
+						"name": "eNPSLastSurveyResponseDate",
+						"type": "date"
+					},
+					{
+						"name": "eNPSRecipientCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "eNPSResponseCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "eNPSScore",
+						"type": "decimal",
+						"precision": 6,
+						"scale": 2
+					},
+					{
+						"name": "CurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CurrentPeriodAveragePriorityCompletionPercent",
+						"type": "decimal",
+						"precision": 28,
+						"scale": 2
+					},
+					{
+						"name": "CurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CurrentPeriodAverageCompanyPriorityCompletionPercent",
+						"type": "decimal",
+						"precision": 28,
+						"scale": 2
+					},
+					{
+						"name": "UsersWithAPriorityInCurrentPeriod",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersWithAPriorityInCurrentPeriodUpdatedInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CurrentPeriodUserDrivenStatusPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "SuperRedCurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "RedCurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "YellowCurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "GreenCurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "SuperGreenCurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "NotSetCurrentPeriodPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "SuperRedCurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "RedCurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "YellowCurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "GreenCurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "SuperGreenCurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "NotSetCurrentPeriodCompanyPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPCoreValueCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPHasBHAG",
+						"type": "bit"
+					},
+					{
+						"name": "CompanyOPSPHasCorePurpose",
+						"type": "bit"
+					},
+					{
+						"name": "CompanyOPSPHasBrandPromise",
+						"type": "bit"
+					},
+					{
+						"name": "CompanyOPSPHasBrandPromiseKPIs",
+						"type": "bit"
+					},
+					{
+						"name": "CompanyOPSP3to5YearsTargetCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSP3to5YearsKeyThrustCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSP3to5YearsHasProfitPerX",
+						"type": "bit"
+					},
+					{
+						"name": "CompanyOPSPAnnualGoalCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualInitiativeCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualInitiativeConnectedPriorityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualActionCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualStrengthCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualWeaknessCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualOpportunityCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualThreatCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPQuarterlyActionCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "RedCompanyOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "YellowCompanyOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "GreenCompanyOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "TeamsWithAtLeast1CriticalNumber",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "TeamOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "RedTeamOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "YellowTeamOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "GreenTeamOPSPCriticalNumberCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPHasTheme",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingPeopleEmployeeCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingPeopleCustomerCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingPeopleShareholderCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingProcessMakeBuyCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingProcessSellCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingProcessRecordkeepingCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPSupportingHasIdealClient",
+						"type": "bit"
+					},
+					{
+						"name": "UsersWithADailyTopPriorityInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DailyTopPrioritiesInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "DailyTopPrioritiesCompletedInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "OutstandingStuckCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersStuckInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersFromWhomHelpWasNeededPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "StucksResolvedInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "StucksCreatedInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersWithATask",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "OpenTaskCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "OverdueTaskCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompletedTasksInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "TasksCreatedInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CoachingStaffCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersWhoHaveParticipatedInADailyHuddleInPast7Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersWhoHaveParticipatedInAWeeklyHuddleInPast30Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPAnnualInitiativesConnectedToAPriority",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "CompanyOPSPCriticalNumbersUpdatedInPast30Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "TeamOPSPCriticalNumbersUpdatedInPast30Days",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "FullUserCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "eNPSNonUserCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "PaidUserCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "eNPStoNonUsersFeature",
+						"type": "varchar"
+					},
+					{
+						"name": "NonCoachAdminUserCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersWithHuddles2SetAsDefaultView",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "KPIsComponentCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "KPICardsCurrentPeriodCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "KPICardsUserDashboardsCurrentPeriodCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "KPICardsCompanyDashboardCurrentPeriodCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "KPICardsHuddlesCurrentPeriodCount",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "UsersWithKPIsComponentAndKPICardOnUserDashboard",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "HuddlesWithKPIsComponentAndKPICard",
+						"type": "smallint",
+						"precision": 5
+					},
+					{
+						"name": "__mj_CreatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					},
+					{
+						"name": "__mj_UpdatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DailyAlignKeyCompanyMetric"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkOPPCoreValue')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OnePagePlanID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sequence",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Value",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SortOrder",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Description",
+						"type": "nvarchar"
+					},
+					{
+						"name": "__mj_CreatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					},
+					{
+						"name": "__mj_UpdatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OnePagePlanCoreValue"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkOPPSWOTOpportunityToDev')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "alignDevSQL",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "OnePagePlanID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Sequence",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Opportunity",
+						"type": "nvarchar"
+					},
+					{
+						"name": "SortOrder",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "__mj_CreatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					},
+					{
+						"name": "__mj_UpdatedAt",
+						"type": "datetimeoffset",
+						"scale": 7
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OnePagePlanSWOTOpportunity"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/alignDevSQL')]"
+			]
+		}
+	]
+}

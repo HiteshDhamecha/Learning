@@ -1,0 +1,87 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "et-ci-dev-etintl-df"
+		},
+		"alignDevSQL_password": {
+			"value": ""
+		},
+		"cxoDatabaseLS_password": {
+			"value": ""
+		},
+		"etintlstorageLS_connectionString": {
+			"value": ""
+		},
+		"hboCompany_LS_password": {
+			"value": ""
+		},
+		"personifyLocalIS_password": {
+			"value": ""
+		},
+		"sqldbLS_password": {
+			"value": ""
+		},
+		"AviationStackAPILS_properties_typeProperties_url": {
+			"value": "https://api.aviationstack.com/v1/"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://api.hubapi.com/crm/v3/objects/companies?limit=100"
+		},
+		"alignDevSQL_properties_typeProperties_server": {
+			"value": "DEVMAIN01.ALIGNTODAY.COM\\DEV"
+		},
+		"alignDevSQL_properties_typeProperties_database": {
+			"value": "Align_AI_Coach"
+		},
+		"alignDevSQL_properties_typeProperties_userName": {
+			"value": "mj_integration"
+		},
+		"cxoDatabaseLS_properties_typeProperties_server": {
+			"value": "et-ci-dev-cxo-sqlsrv.database.windows.net"
+		},
+		"cxoDatabaseLS_properties_typeProperties_database": {
+			"value": "et-ci-dev-cxo-sqldb"
+		},
+		"cxoDatabaseLS_properties_typeProperties_userName": {
+			"value": "saadmin"
+		},
+		"hboCompany_LS_properties_typeProperties_server": {
+			"value": "et-ci-dev-cxo-sqlsrv.database.windows.net"
+		},
+		"hboCompany_LS_properties_typeProperties_database": {
+			"value": "et-ci-dev-cxo-sqldb"
+		},
+		"hboCompany_LS_properties_typeProperties_userName": {
+			"value": "saadmin"
+		},
+		"hubspotAPI_LS_properties_typeProperties_url": {
+			"value": "https://api.hubapi.com/crm/v3/objects/companies?limit=100"
+		},
+		"personifyLocalIS_properties_typeProperties_server": {
+			"value": "ET"
+		},
+		"personifyLocalIS_properties_typeProperties_database": {
+			"value": "CASE770PROD_P360"
+		},
+		"personifyLocalIS_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"sqldbLS_properties_typeProperties_server": {
+			"value": "et-ci-dev-etintl-dbsrv.database.windows.net"
+		},
+		"sqldbLS_properties_typeProperties_database": {
+			"value": "et-ci-dev-etintl-sqldb"
+		},
+		"sqldbLS_properties_typeProperties_userName": {
+			"value": "Aamir"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
